@@ -109,8 +109,7 @@ def ver_historico_acta(st, controlador):
                 st.write("Acta calificada")
         with col11:
             st.write("##fecha presentacion##")
-            st.write(acta.fecha_presentacion)
-
+            st.write(acta.fecha_de_presentacion)
 
 def evaluar_criterios(st, controlador):
     st.title("Evaluación de Criterios")

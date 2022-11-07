@@ -42,7 +42,7 @@ class MainView:
         # Definimos lo que abra en la barra de menu
         with st.sidebar:
             st.image("img/LogoJaverianaCali.jpg", width=297)
-            self.menu_actual = option_menu("Menu", ["Inicio", 'Crear acta', 'Evaluar acta', 'Ver históricos'],
+            self.menu_actual = option_menu("Menu", ["Inicio", 'Crear acta', 'Evaluar acta', 'Ver históricos','Exportar PDF'],
                                            icons=['house', 'mortarboard', 'people', 'person-check-fill'], menu_icon="cast", default_index=0)
 
     def mostrar_bienvenida(self):

@@ -23,3 +23,9 @@ class InfoActa:
         self.nota_final = 0.0
         self.criterios = criterios
         self.estado = False
+        self.fecha_de_presentacion = "" 
+        self.tipo_jurado1 = ""
+        self.tipo_jurado2 = ""
+        self.info_adicional = ""
+        self.restriccion_nota_final = 0.0
+

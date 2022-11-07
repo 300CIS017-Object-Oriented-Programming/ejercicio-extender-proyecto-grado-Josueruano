@@ -63,7 +63,6 @@ class MainView:
         elif self.menu_actual == "Crear acta":
             # No necesitan self pq son funciones del archivo EvaluacionActaPartial
             agregar_acta(st, self.controller)
-            ver_historico_acta(st, self.controller)
         elif self.menu_actual == "Evaluar acta":
             evaluar_criterios(st, self.controller)
         elif self.menu_actual == "Ver históricos":

@@ -16,6 +16,8 @@ class ControladorPdf:
         :param acta_seleccionada:
         :return:
         """
+        global acta
+        
         numero = 1
         flag = False
         self.pdf.add_page()
@@ -67,7 +69,7 @@ class ControladorPdf:
                 self.pdf.cell(35, 10, txt="Letras", ln=1, align='C')
                 self.pdf.set_font("times", size=12)
                 self.pdf.multi_cell(185, 5, txt="Observaciones adicionales: {acta.info_adicional} ", align='L')
-                self.pdf.multi_cell(185, 5, txt="Observaciones adicionales: {acta.restricciones_nota_final}", align='L')
+                self.pdf.multi_cell(185, 5, txt="restricciones: {acta.restricciones_nota_final}", align='L')
                 self.pdf.multi_cell(185, 5,
                                txt="_____________________________________________________________________________________",
                                align='L')

@@ -66,9 +66,10 @@ class MainView:
             ver_historico_acta(st, self.controller)
         elif self.menu_actual == "Evaluar acta":
             evaluar_criterios(st, self.controller)
-            exportar_acta(st, self.controller)
         elif self.menu_actual == "Ver históricos":
             ver_historico_acta(st, self.controller)
+        elif self.menu_actual == "Exportar PDF":
+            exportar_acta(st, self.controller)
 
 
 # Main call

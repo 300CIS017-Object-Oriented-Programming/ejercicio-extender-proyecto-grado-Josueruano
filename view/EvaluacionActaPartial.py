@@ -4,13 +4,14 @@ from model.InfoActa import InfoActa
 from datetime import datetime
 from controller.ControladorPDF import ControladorPdf
 
+
 # Este archivo contiene las funcionalidades de la vista relacionado con la evaluación de las actas
 
 
 def agregar_acta(st, controlador):
     st.title("Generación De Actas")
     col1, col2, col3 = st.columns(3)
-    col5, col6, col7, col8 = st.columns(4)
+    col5, col6, col7, col8, col9 = st.columns(5)
     # Objeto que modelará el formulario
     info_acta_obj = InfoActa(controlador.criterios)
     info_acta_obj.fecha_acta = datetime.today().strftime('%Y-%m-%d')
@@ -21,13 +22,24 @@ def agregar_acta(st, controlador):
     with col3:
         info_acta_obj.tipo_trabajo = st.selectbox('Tipo', ('Aplicado', 'Investigación'))
     with col5:
-        info_acta_obj.director = st.text_input("Director")
+        info_acta_obj.director = st.text_input('Director', )
     with col6:
         info_acta_obj.codirector = st.text_input("Codirector", "N.A")
     with col7:
         info_acta_obj.jurado1 = st.text_input("Jurado #1")
+        if st.checkbox("jurado 1: externo"):
+            info_acta_obj.tipo_jurado1 = "externo"
+        else:
+            info_acta_obj.tipo_jurado1 = "interno"
+
     with col8:
         info_acta_obj.jurado2 = st.text_input("Jurado #2")
+        if st.checkbox("jurado 2: externo"):
+            info_acta_obj.tipo_jurado2 = "externo"
+        else:
+            info_acta_obj.tipo_jurado2 = "interno"
+    with col9:
+        info_acta_obj.fecha_de_presentacion = st.text_input("fecha de presentacion")
     enviado_btn = st.button("Enviar")
 
     # Cuando se oprime el botón se agrega a la lista
@@ -56,7 +68,7 @@ def ver_historico_acta(st, controlador):
         numero += 1
         col1, col2, col3, col4 = st.columns(4)
         col5, col6, col7, col8 = st.columns(4)
-        col9, col10 = st.columns(2)
+        col9, col10, col11 = st.columns(3)
         with col1:
             st.write("**Autor**")
             st.write(acta.autor)
@@ -95,6 +107,9 @@ def ver_historico_acta(st, controlador):
                 st.write("Acta pendiente por calificar")
             else:
                 st.write("Acta calificada")
+        with col11:
+            st.write("##fecha presentacion##")
+            st.wirte(acta.fecha_presentacion)
 
 
 def evaluar_criterios(st, controlador):
@@ -116,6 +131,14 @@ def evaluar_criterios(st, controlador):
                 criterio.observacion = st.text_input(str(num) + ". Observación", "Sin Comentarios.")
                 temp += criterio.nota
                 num += 1
+
+            st.write("Comentarios adicionales: ")
+            acta.info_adicional = st.text_input("informacion extra", "sin comentarios")
+            st.write("restriccion nota final")
+            acta.restriccion_nota_final = st.number_unput("restriccion: ", 0.0, 5.0)
+
+            if temp > acta.restriccion_nota_final:
+                temp = acta.restriccion_nota_final
             if temp > 3.5:
                 st.write("#### Nota Final", temp, "Acta Aprobada.")
             else:
@@ -159,3 +182,4 @@ def exportar_acta(st, controlador):
 
     if len(controlador.actas) == 0:
         st.warning("No Hay Ningún Estudiante Calificado Actualmente.")
+

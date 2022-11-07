@@ -109,7 +109,7 @@ def ver_historico_acta(st, controlador):
                 st.write("Acta calificada")
         with col11:
             st.write("##fecha presentacion##")
-            st.wirte(acta.fecha_presentacion)
+            st.write(acta.fecha_presentacion)
 
 
 def evaluar_criterios(st, controlador):
@@ -135,7 +135,7 @@ def evaluar_criterios(st, controlador):
             st.write("Comentarios adicionales: ")
             acta.info_adicional = st.text_input("informacion extra", "sin comentarios")
             st.write("restriccion nota final")
-            acta.restriccion_nota_final = st.number_unput("restriccion: ", 0.0, 5.0)
+            acta.restriccion_nota_final = st.number_input("restriccion: ", 0.0, 5.0)
 
             if temp > acta.restriccion_nota_final:
                 temp = acta.restriccion_nota_final
